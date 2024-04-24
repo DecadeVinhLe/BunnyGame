@@ -22,7 +22,22 @@ public class Spike {
         resetPosition();
     }
 
+    public Bitmap getSpike(int spikeFrame){
+        return spike[spikeFrame];
+    }
+
+    public int getSpikeWidth(){
+        return spike[0].getWidth();
+    }
+
+    public int getSpikeHeight(){
+        return spike[0].getHeight();
+    }
+
     private void resetPosition() {
+        spikeX = random.nextInt(GameView.dWidth - getSpikeWidth());
+        spikeY = -200 + random.nextInt(600) * -1;
+        spikeVelocity = 35 + random.nextInt(16);
     }
 
 }
