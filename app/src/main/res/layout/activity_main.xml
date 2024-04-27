@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#e7dfc2"
+    android:background="#EDE0B8"
     android:layout_gravity="center">
 
     <ImageView
@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.2"
-        app:srcCompat="@drawable/chillies" />
+        app:srcCompat="@drawable/chill" />
 
     <Button
         android:layout_width="184dp"

@@ -25,6 +25,8 @@ public class GameOver extends AppCompatActivity {
          setContentView(R.layout.game_over);
          tvPoints = findViewById(R.id.tvPoints);
          tvHighest = findViewById(R.id.tvHighest);
+        ivNewHighest = findViewById(R.id.tvNewHighest);
+        ivNewHighest.setVisibility(View.VISIBLE);
          int points = getIntent().getExtras().getInt("points");
          tvPoints.setText("" + points);
          sharedPreferences = getSharedPreferences("my_pref", 0);

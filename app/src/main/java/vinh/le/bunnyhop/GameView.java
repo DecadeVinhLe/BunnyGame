@@ -2,6 +2,7 @@ package vinh.le.bunnyhop;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,11 +13,9 @@ import android.os.Handler;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.graphics.Bitmap;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -70,7 +69,6 @@ public class GameView extends View {
         textPaint.setColor(Color.rgb(255,165,0));
         textPaint.setTextSize(TEXT_SIZE);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        textPaint.setTypeface(ResourcesCompat.getFont(context,R.font.robotic));
         healthPaint.setColor(Color.GREEN);
         random = new Random();
         rabbitX = dWidth/2 - rabbit.getWidth()/2;
@@ -97,27 +95,28 @@ public class GameView extends View {
             }
             spikes.get(i).spikeY += spikes.get(i).spikeVelocity;
             if (spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= dHeight - ground.getHeight()){
-                 points += 10;
-                 Explosion explosion = new Explosion(context);
-                 explosion.explosionX = spikes.get(i).spikeX;
-                 explosion.explosionY = spikes.get(i).spikeY;
-                 explosion.add(explosion);
-                 spikes.get(i).resetPosition();
+                points += 10;
+                Explosion explosion = new Explosion(context);
+                explosion.explosionX = spikes.get(i).spikeX;
+                explosion.explosionY = spikes.get(i).spikeY;
+                explosions.add(explosion);
+                spikes.get(i).resetPosition();
             }
         }
 
         for(int i=0; i < spikes.size(); i++) {
             if(spikes.get(i).spikeX + spikes.get(i).getSpikeWidth() >= rabbitX
-            && spikes.get(i).spikeX <= rabbitX + rabbit.getWidth()
-            && spikes.get(i).spikeY + spikes.get(i).getSpikeWidth() >= rabbitY
-            && spikes.get(i).spikeY + spikes.get(i).getSpikeWidth() <= rabbitY + rabbit.getWidth());
-            life--;
-            spikes.get(i).resetPosition();
-            if (life == 0){
-                Intent intent = new Intent(context, GameOver.class);
-                intent.putExtra("points",points);
-                context.startActivity(intent);
-                ((Activity) context).finish();
+                    && spikes.get(i).spikeX <= rabbitX + rabbit.getWidth()
+                    && spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= rabbitY
+                    && spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() <= rabbitY + rabbit.getHeight()){
+                life--;
+                spikes.get(i).resetPosition();
+                if (life == 0){
+                    Intent intent = new Intent(context, GameOver.class);
+                    intent.putExtra("points",points);
+                    context.startActivity(intent);
+                    ((Activity) context).finish();
+                }
             }
         }
 
@@ -125,9 +124,8 @@ public class GameView extends View {
             canvas.drawBitmap(explosions.get(i).getExplosion(explosions.get(i).explosionFrame), explosions.get(i).explosionX,
                     explosions.get(i).explosionY,null);
             explosions.get(i).explosionFrame++;
-            if(explosions.get(i).explosionFrame > 3){
+            if(explosions.get(i).explosionFrame >= 3){
                 explosions.remove(i);
-
             }
         }
         if (life == 2){
@@ -158,13 +156,11 @@ public class GameView extends View {
                 else if (newRabbitX >= dWidth -rabbit.getWidth()) {
                     rabbitX = dWidth - rabbit.getWidth();
                 }
-                    else
-                        rabbitX = newRabbitX;
+                else
+                    rabbitX = newRabbitX;
 
             }
         }
         return true;
     }
-
-    
 }
