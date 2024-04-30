@@ -5,4 +5,7 @@
     <color name="holo_green">#009688</color>
     <color name="holo_yellow">#FDED59</color>
     <color name="holo_orange">#DE3500</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="gray">#86C7B2B2</color>
+    <color name="blue">#00ADFC</color>
 </resources>

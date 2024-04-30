@@ -33,17 +33,19 @@
         app:srcCompat="@drawable/chill" />
 
     <Button
-        android:layout_width="184dp"
-        android:layout_height="83dp"
-        android:backgroundTint="#bb8044"
-        android:fontFamily="cursive"
+        android:layout_width="241dp"
+        android:layout_height="89dp"
+        android:background="@drawable/bg_button"
         android:onClick="startGame"
         android:text="@string/Start"
-        android:textColor="@color/white"
-        android:textSize="32sp"
+        android:textColor="@drawable/selection"
+        android:fontFamily="monospace"
+        android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.531" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
