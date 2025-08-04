@@ -17,7 +17,7 @@
 - Randomly spawning bombs
 - Smooth custom game loop
 - Collision detection
-- Modular OOP codebase (clean af)
+- Modular OOP codebase
 
 ---
 
