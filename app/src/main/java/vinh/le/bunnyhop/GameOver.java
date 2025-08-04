@@ -1,6 +1,7 @@
 package vinh.le.bunnyhop;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 public class GameOver extends AppCompatActivity {
 
     TextView tvPoints;
@@ -19,6 +22,7 @@ public class GameOver extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     ImageView ivNewHighest;
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onCreate(@Nullable Bundle saveInstanceState){
          super.onCreate(saveInstanceState);
@@ -27,7 +31,7 @@ public class GameOver extends AppCompatActivity {
          tvHighest = findViewById(R.id.tvHighest);
         ivNewHighest = findViewById(R.id.tvNewHighest);
         ivNewHighest.setVisibility(View.VISIBLE);
-         int points = getIntent().getExtras().getInt("points");
+         int points = Objects.requireNonNull(getIntent().getExtras()).getInt("points");
          tvPoints.setText("" + points);
          sharedPreferences = getSharedPreferences("my_pref", 0);
          int highest = sharedPreferences.getInt("highest",0);
